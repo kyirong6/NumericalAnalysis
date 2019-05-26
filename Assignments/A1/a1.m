@@ -1,12 +1,12 @@
 x1 = linspace(0,power(10,9),65000000);
-y1 = arrayfun(@(x) exp(1) - power((1 + (1/x)), x), x);
+y1 = arrayfun(@(x) abs((exp(1) - power((1 + (1/x)), x)))/abs(exp(1)), x1);
 p1 = semilogy(x1, y1);
 xlabel('n');
-ylabel('error');
-title('approximation error of e for equal increments of n')
+ylabel('relative approximation error');
+title('relative approximation error of e using (1 + 1/n)^n for increasing values of n');
 x2 = power(2, 0:100);
-y2 = arrayfun(@(x) exp(1) - power((1 + (1/x)), x), x2);
-p2 = loglog(x2,y2);
-xlabel('n (powers of 2)')
-ylabel('error')
-title('approximation error of e for powers of 2')
+y2 = arrayfun(@(x) abs((exp(1) - power((1 + (1/x)), x))), x2);
+p2 = semilogy(log2(x2),y2);
+xlabel('2^k');
+ylabel('absolute approximation error');
+title('absolute approximation error of e using (1 + 1/n)^n for increasing powers of 2');

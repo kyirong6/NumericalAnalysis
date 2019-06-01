@@ -7,7 +7,7 @@ times2 = []; % Vector of times for QR
 times3 = []; % Vector of times for GE w/ A=transpose(B)*B
 times4 = [];% Vector of times for QR w/ A=transpose(B)*B
 errors1 = []; % Vector of error for GE
-errors2 = []; % Vector of error for QRs
+errors2 = []; % Vector of error for QR
 errors3 = []; % Vector of error for GE w/ A=transpose(B)*B
 errors4 = []; % Vector of error for QR w/ A=transpose(B)*B
 
@@ -44,12 +44,13 @@ for N = 1:steps:nmax
         % ----GE w/ A=transpose(B)*B----
         tic;
         xhat3 = a2\b3;
+        size(xhat3)
         times3_raw(i) = toc;
         errors3_raw(i) = max(abs(xhat3 - x));
         % ----QR w/ A=transpose(B)*B----
         tic;
         [Q,R] = qr(a2);
-        xhat4 = R\(transpose(Q)*b3);
+        xhat4 = R\(transpose(Q)*b2);
         times4_raw(i) = toc;
         errors4_raw(i) = max(abs(xhat4 - x));
     end

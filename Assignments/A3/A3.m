@@ -36,7 +36,7 @@ xlabel("k iterations");
 ylabel("computational time");
 title("Computational time vs K iterations for exp computation");
 
-part c
+% part c
 error = [];
 expA = expm(A.A);
 for n = 5:5:150 
